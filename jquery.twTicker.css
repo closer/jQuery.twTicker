@@ -1,0 +1,22 @@
+/**
+ * style for "jquery.twTicker" jQuery Plugin
+ */
+.twTicker {
+	position: relative;
+	width: 400px;
+	overflow: hidden;
+	text-align: center;
+}
+.twTicker .twTickerWrapper {
+	position: relative;
+	width: 99999px;
+	text-align: left;
+}
+.twTicker .twTickerInner {
+	float: left;
+}
+.twTicker .tweet {
+	display: inline;
+	margin: 0 20px 0 0;
+}
+

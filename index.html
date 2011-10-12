@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=640, maximum-scale=1">
+<title>&quot;twTicker&quot; jQuery plugin - 解説ページ</title>
+<!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script type="text/javascript" src="resources/linenumberwriter.js"></script>
+<script type="text/javascript" src="resources/script.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/linenumberwriter.css">
+<link rel="stylesheet" type="text/css" href="resources/style.css">
+
+<script type="text/javascript" src="jquery.twTicker.js"></script>
+<link rel="stylesheet" type="text/css" href="jquery.twTicker.css" media="all">
+<script type="text/javascript">
+$(function() {
+	$('#twTicker').twTicker({
+		query:"from%3Atoptweets_ja",
+		length: 10,
+		tweetLink: false
+	});
+
+	$('#twTicker2').twTicker({
+		query:"%23yoshida",
+		length: 10
+	});
+
+	$('#twTicker3').twTicker({
+		query:"%23matsumoto",
+		length: 10,
+		duration: 70000
+	});
+});
+</script>
+<style type="text/css">
+.twTicker  {
+    border: 1px solid #ccc;
+}
+</style>
+<script type="text/javascript" src="http://kaelab.ranadesign.com/blog/js/ga.js"></script>
+</head>
+<body>
+<div class="area_container">
+<header class="area_hd">
+<p class="siteTitle" id="pagetop">かえラボ - 解説ページ</p>
+<nav class="nav_hd"><a href="/blog/" class="back">かえラボBlog &#187;</a></nav>
+<!--/.area_hd--></header>
+
+<div class="area_bd">
+
+<article>
+<h1>&quot;twTicker&quot; jQuery plugin</h1>
+
+<section class="description">
+<h2>Description</h2>
+<p>このスクリプトはjQueryプラグインです。<br>
+指定したエリア内に横スライドするだけのシンプルなTwitterティッカーを表示します。</p>
+<!--/.description--></section>
+<hr>
+<section class="demo">
+<h2>Demos</h2>
+
+<section>
+	<h3>Demo 1</h3>
+	<p class="description">Query &quot;from@toptweets_js&quot;with no links.</p>
+	<div id="twTicker"></div>
+</section>
+
+<section>
+	<h3>Demo 2</h3>
+	<p class="description">Query &quot;#yoshida&quot; with tweet links.</p>
+	<div id="twTicker2"></div>
+</section>
+
+<section>
+	<h3>Demo 3</h3>
+	<p class="description">Query &quot;#matsumoto&quot; with tweet links, slow duration.</p>
+	<div id="twTicker3"></div>
+</section>
+
+<!--/.demo--></section>
+<hr>
+<section class="usage">
+<h2>Usage</h2>
+
+<section class="step step01">
+<h3>Step01</h3>
+<p>head要素内で jquery.twTicker.jsと、jquery.twTicker.cssをそれぞれ読み込みます。もちろん、jquery.jsを読み込んだ後に読み込みましょう。</p>
+
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.twTicker.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;jquery.twTicker.css&quot; /&gt;</code></pre>
+<!--/.step01--></section>
+
+<section class="step step02">
+<h3>Step02</h3>
+<p>Step01の通りスクリプトファイルを読み込んだ後に、以下の例のように実行します。<br />
+ティッカーのコンテナとなる要素をjQueryセレクタで指定して、実行します。引数でオプションを指定できます。</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+$(function() {
+    $('#twTicker').twTicker({
+        // some options...
+        query:'from%3Atoptweets_ja',
+        length: 10
+    });
+});
+&lt;/script&gt;
+...
+&lt;div id=&quot;twTicker&quot;&gt;&lt;/div&gt;</code></pre>
+<p>オプションの一覧は次の表の通りです。</p>
+
+<div class="mod_dataTable">
+<table class="mod_optionTable">
+<colgroup span="1" class="colh">
+<colgroup span="1" class="colh">
+<colgroup span="1" class="cold">
+<thead>
+<tr>
+<th>オプション名<br>(option name)</th>
+<th>デフォルト値<br>(default value)</th>
+<th>備考<br>(note)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>query</td>
+<td>'from%3Atoptweets_ja'</td>
+<td>Twitter APIに投げるクエリ<br>
+例：'TagName'タグを検索 -&gt; %23TagName<br>
+'UserName'ユーザーを検索 -&gt; from%3AUserName</td>
+</tr>
+<tr>
+<td>length</td>
+<td>10</td>
+<td>Tweetを取得する数</td>
+</tr>
+<tr>
+<td>tweetLink</td>
+<td>true</td>
+<td>Tweetにパーマリンクを張るかどうかを示す論理値</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>20000</td>
+<td>アニメーションにかける時間。多いとスピードが遅くなります。</td>
+</tr>
+<tr>
+<td>loading</td>
+<td>true</td>
+<td>ローディング画像を表示するかどうかを示す論理値</td>
+</tr>
+<tr>
+<td>loadingImg</td>
+<td>'loading.gif'</td>
+<td>ローディング画像のパス</td>
+</tr>
+<tr>
+<td>loadingImgId</td>
+<td>'twTickerLoadingImg'</td>
+<td>ローディング画像のid属性</td>
+</tr>
+<tr>
+<td>className</td>
+<td>'twTicker'</td>
+<td>jQueryセレクタで指定した要素に追加するclass属性。
+デフォルト値から変更する場合は<span class="file">jquery.twTicker.css</span>内の指定も合わせて変更する必要があります。</td>
+</tr>
+<tr>
+<td>wrapperClassName</td>
+<td>'twTickerWrapper'</td>
+<td>Tweet全体を包むラッパー要素のclass属性。
+デフォルト値から変更する場合は<span class="file">jquery.twTicker.css</span>内の指定も合わせて変更する必要があります。</td>
+</tr>
+<tr>
+<td>datePosition</td>
+<td>'after'</td>
+<td>日付をTweetテキストの前につけるか、後ろにつけるかを示す文字列。'before'で前に、それ以外を指定すると後ろにつきます。</td>
+</tr>
+<tr>
+<td>dateFormat</td>
+<td><pre>function(y,m,d,hs,ms,ss) {
+  return " (" + y + "-" + m
+    + "-" + d + " " + hs+ ":"
+    + ms + ":" + ss + ")";
+}</pre></td>
+<td>日付表示のフォーマットを返す関数。引数に 年/月/日/時/分/秒 を順番に6つ受け取るのでそれを使って適当な文字列を返すようにします。</td>
+</tr>
+</tbody>
+</table>
+<!--/.mod_dataTable--></div>
+
+<!--/.step02--></section>
+
+<!--/.usage--></section>
+<hr>
+<section class="download">
+<h2>Download</h2>
+<p><a href="jquery.twTicker.zip">twTicker - Version: 1.0</a></p>
+<p class="note">※zipアーカイブに含まれるファイルのうち、loading.gifは <a href="http://www.chimply.com/Generator#spinner">Chimply generates your images</a> で生成したものです。</p>
+<!--/.download--></section>
+<hr>
+<section class="license">
+<h2>License</h2>
+<p><a href="http://www.opensource.org/licenses/mit-license.html">MIT License</a></p>
+<p>参考: <a href="https://secure.wikimedia.org/wikipedia/ja/wiki/MIT_License">MIT License - Wikipedia</a></p>
+<!--/.license--></section>
+<hr>
+<section class="history">
+<h2>History</h2>
+<div class="mod_datebasedTable">
+<table>
+<colgroup span="1" class="colh">
+<colgroup span="1" class="colh">
+<colgroup span="1" class="cold">
+<tbody>
+<tr>
+<td>2011-10-12</td>
+<td>-</td>
+<td>ツイートのリンクがうまく機能していなかった問題を修正。<br />
+githubにリポジトリを開設</td>
+</tr>
+<tr>
+<td>2010-11-05</td>
+<td>-</td>
+<td>デモページをこの解説ページとして刷新</td>
+</tr>
+<tr>
+<td>2010-09-24</td>
+<td>Ver. 1.0</td>
+<td>ページ内に複数埋め込めるように改良</td>
+</tr>
+</tbody>
+</table>
+<!--/.mod_datebasedTable--></div>
+<!--/.history--></section>
+<hr>
+<section class="contact">
+<h2>Contact</h2>
+<p><a href="http://kaelab.ranadesign.com/blog/2010/09/twticker.html">シンプルなTwitterティッカーを表示するjQueryプラグイン | かえラボBlog</a></p>
+<!--/.contact--></section>
+
+</article>
+
+<!--/.area_bd--></div>
+
+<footer class="area_ft">
+<p class="copyright"><small><a href="http://www.ranadesign.com/">Copyright (c) RaNa design associates, inc.</a></small></p>
+<!--/.area_ft--></footer>
+
+</div>
+
+</body>
+</html>
+
