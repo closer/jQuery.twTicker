@@ -120,9 +120,14 @@ Step01の通りスクリプトファイルを読み込んだ後に、以下の�
 
 ---
 ##License
-<a href="http://www.opensource.org/licenses/mit-license.html">MIT License</a>
+<a href="http://www.opensource.org/licenses/mit-license.html">MIT License</a><br />
 参考: <a href="https://secure.wikimedia.org/wikipedia/ja/wiki/MIT_License">MIT License - Wikipedia</a>
 
 ---
 ##Contact
 <a href="http://kaelab.ranadesign.com/blog/2010/09/twticker.html">シンプルなTwitterティッカーを表示するjQueryプラグイン | かえラボBlog</a>
+
+---
+##Note
+構成ファイルのうち、loading.gifは <a href="http://www.chimply.com/Generator#spinner">Chimply generates your images</a> で生成したものです。
+
