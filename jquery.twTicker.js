@@ -34,7 +34,7 @@
 			$.twTicker[instanceName].showLoadingImg();
 			// Insert Twitter script element
 			$('<script/>', {
-				"src": "/twTicker_proxy.php?q=" + opt.query + "&rpp=" + opt.length + "&callback=jQuery.twTicker.instance" + (index + i) + ".callback"
+				"src": "./twTicker_proxy.php?q=" + opt.query + "&rpp=" + opt.length + "&callback=jQuery.twTicker.instance" + (index + i) + ".callback"
 			}).appendTo("head");
 			// Update index of instance
 			$.twTicker.index ++;
@@ -167,10 +167,10 @@
 		},
 		createDateText: function(responseDateText) {
 			// ResponseDateText example:
-			// ["Fri,", "17", "Sep", "2010", "06:28:39", "+0000"]
+			// ["Wed", "Jun", "12", "08:22:29", "+0000", "2013"]
 			var created_at = responseDateText.split(" ");
 				// Date string -> Date object
-			var d = new Date(created_at[2] + " " + created_at[1] + ", " + created_at[3] + ", " + created_at[4]);
+			var d = new Date(created_at[1] + " " + created_at[2] + ", " + created_at[5] + ", " + created_at[3]);
 				// UTC -> JST (+9h)
 			d.setHours(d.getHours() + 9);
 				// If hour/minutes in single digit, add "0" to it's double digit
