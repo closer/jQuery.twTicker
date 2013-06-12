@@ -34,14 +34,14 @@
 			$.twTicker[instanceName].showLoadingImg();
 			// Insert Twitter script element
 			$('<script/>', {
-				"src": ("https:" === document.location.protocol ? "https://" : "http://") + "search.twitter.com/search.json?q=" + opt.query + "&rpp=" + opt.length + "&callback=jQuery.twTicker.instance" + (index + i) + ".callback"
+				"src": "/twTicker_proxy.php?q=" + opt.query + "&rpp=" + opt.length + "&callback=jQuery.twTicker.instance" + (index + i) + ".callback"
 			}).appendTo("head");
 			// Update index of instance
 			$.twTicker.index ++;
 			// Setting for style
 			$(this).addClass(opt.className);
 		});
-		
+
 		return this;
 	};
 
@@ -72,8 +72,8 @@
 		callback: function(data) {
 			var self = this,
 				opt = this.options,
-				res = data.results,
-				resLength = data.results.length,
+				res = data.statuses,
+				resLength = data.statuses.length,
 				tweetContainers = [];
 			this.hideLoadingImg();
 			// Prevent query error
@@ -82,7 +82,7 @@
 			// Build Tweet List
 			var $twTickerInner = $('<div/>', {"class":"twTickerInner"});
 			$.each(res, function(i) {
-				var resUser = res[i].from_user,
+				var resUser = res[i].user.screen_name,
 					resText = res[i].text,
 					resDate = res[i].created_at,
 					resId = res[i].id_str,
